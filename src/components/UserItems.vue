@@ -17,7 +17,6 @@ defineEmits<{
       v-for="item in userItems"
       :key="item.id"
       :title="item.name"
-      :is-active="false"
       @click="$emit('selectUserItem', item)"
     />
   </div>

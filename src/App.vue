@@ -1,15 +1,28 @@
 <script setup lang="ts">
+import { reactive } from 'vue'
 import UserItems from './components/UserItems.vue'
-import type { IItem } from './types'
+import UserCart from './components/UserCart.vue'
+import type { IItem, IUserData } from './types'
+
+const userCartData: IUserData = reactive({
+  list: [],
+  maxActiveItems: 6,
+  actvieItemsCount: 0,
+})
 
 function selectUserItem(item: IItem) {
-  console.log(item)
+  if (userCartData.actvieItemsCount < userCartData.maxActiveItems) {
+    userCartData.list.push(item)
+    userCartData.actvieItemsCount = userCartData.list.length
+  }
 }
 </script>
 
 <template>
   <div class="app__top">
-    <div class="app__top__column block_border">UserCart</div>
+    <div class="app__top__column block_border">
+      <UserCart :user-data="userCartData" />
+    </div>
     <div class="app__top__column block_border">ChoiseCart</div>
   </div>
   <div class="app__bottom">
