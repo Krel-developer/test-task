@@ -7,7 +7,7 @@
 <style scoped lang="sass">
 
 .block_border
-  border-radius: 5px
-  padding: 5px
+  border-radius: 10px
+  padding: 10px
   border: 1px solid #111
 </style>
