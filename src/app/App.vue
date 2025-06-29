@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { BlockWithBorder } from '@/shared/ui'
+import { ChoiceCart } from '@/widgets/choiceCart'
+import { ChoiceItems } from '@/widgets/choiceItems'
 import { UserCart } from '@/widgets/userCart'
 import { UserItems } from '@/widgets/userItems'
 </script>
@@ -7,13 +9,15 @@ import { UserItems } from '@/widgets/userItems'
 <template>
   <div class="app__top">
     <BlockWithBorder class="app__top__column"> <UserCart /> </BlockWithBorder>
-    <BlockWithBorder class="app__top__column"> ChoiseCart </BlockWithBorder>
+    <BlockWithBorder class="app__top__column"> <ChoiceCart /> </BlockWithBorder>
   </div>
   <div class="app__bottom">
     <BlockWithBorder class="app__bottom__column">
       <UserItems />
     </BlockWithBorder>
-    <BlockWithBorder class="app__bottom__column"> ChoiseItems </BlockWithBorder>
+    <BlockWithBorder class="app__bottom__column">
+      <ChoiceItems />
+    </BlockWithBorder>
   </div>
 </template>
 
