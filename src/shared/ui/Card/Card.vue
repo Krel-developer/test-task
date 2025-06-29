@@ -17,10 +17,11 @@ const props = defineProps<Props>()
   aspect-ratio: 1/1
   display: flex
   align-items: center
-  justify-content: space-between
+  justify-content: center
   border: 1px solid #111
   padding: 5px
   border-radius: 5px
+  cursor: pointer
   &.active
     border: 1px solid purple
 </style>

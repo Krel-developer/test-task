@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import { useUserItemsStore } from '@/app/entities/userItems'
+import { useUserItemsStore } from '@/entities/userItems'
+import { selectUserItem } from '@/features/selectUserItem'
 import { Card } from '@/shared/ui'
 
 const userItemsStore = useUserItemsStore()
@@ -13,6 +14,7 @@ userItemsStore.fetchList()
       v-for="item in userItemsStore.getList"
       :key="item.id"
       :title="item.name"
+      @click="selectUserItem(item)"
     />
   </div>
 </template>
