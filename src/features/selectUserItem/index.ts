@@ -5,16 +5,13 @@ import type { IItemDto } from '@/shared/types'
 export function selectUserItem(item: IItemDto) {
   const userCartStore = useUserCartStore()
   const userItemsStore = useUserItemsStore()
-  if (userCartStore.getActvieItemsCount < userCartStore.getMaxActiveItems) {
-    const updatedItem: IItemDto = {
-      ...item,
-      isActive: !item.isActive,
-    }
-    userItemsStore.updateItem(updatedItem)
-    if (item.isActive) {
-      userCartStore.removeActiveItem(item)
-    } else {
-      userCartStore.addActiveItem(updatedItem)
-    }
+  if (
+    userCartStore.getActvieItemsCount < userCartStore.getMaxActiveItems &&
+    !item.isActive
+  ) {
+    userCartStore.addActiveItem(item)
+  } else {
+    userCartStore.removeActiveItem(item)
   }
+  userItemsStore.switchItemActivity(item.id)
 }

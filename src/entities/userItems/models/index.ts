@@ -10,12 +10,10 @@ export const useUserItemsStore = defineStore('userItems', () => {
     list.value = getUserItems()
   }
 
-  function updateItem(item: IItemDto) {
-    console.log()
-
+  function switchItemActivity(id: number) {
     list.value.forEach((el, index) => {
-      if (el.id === item.id) {
-        list.value[index] = { ...item }
+      if (el.id === id) {
+        list.value[index].isActive = !list.value[index].isActive
       }
     })
   }
@@ -23,7 +21,7 @@ export const useUserItemsStore = defineStore('userItems', () => {
     return list.value
   })
 
-  return { getList, fetchList, updateItem }
+  return { getList, fetchList, switchItemActivity }
 })
 
 // interface IStore {
