@@ -1,13 +1,19 @@
 <script lang="ts" setup>
 interface Props {
   title: string
+  isActive?: boolean
 }
 
 const props = defineProps<Props>()
 </script>
 
 <template>
-  <div class="card block_border">
+  <div
+    class="card block_border"
+    :class="{
+      active: isActive,
+    }"
+  >
     <h3>{{ props.title }}</h3>
   </div>
 </template>
@@ -24,4 +30,6 @@ const props = defineProps<Props>()
   cursor: pointer
   &.active
     border: 1px solid purple
+    background: purple
+    color: #fff
 </style>

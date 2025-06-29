@@ -1,17 +1,22 @@
-import type { IItem } from '@/shared/api'
+import type { IItemDto } from '@/shared/types'
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 
 export const useUserCartStore = defineStore('userCart', () => {
-  const activeItems = ref<IItem[]>([])
+  const activeItems = ref<IItemDto[]>([])
 
   // Устанавливаем ограничение на кол-во добалвеных предметов в корзину
   // В данном случае 6
   const maxItems = ref<number>(6)
 
-  function addActiveItem(item: IItem) {
+  function addActiveItem(item: IItemDto) {
     activeItems.value.push(item)
   }
+
+  function removeActiveItem(item: IItemDto) {
+    activeItems.value = activeItems.value.filter((el) => el.id != item.id)
+  }
+
   const getActiveItems = computed(() => activeItems.value)
   const getActvieItemsCount = computed(() => activeItems.value.length)
   const getMaxActiveItems = computed(() => maxItems.value)
@@ -21,11 +26,12 @@ export const useUserCartStore = defineStore('userCart', () => {
     getActvieItemsCount,
     getMaxActiveItems,
     addActiveItem,
+    removeActiveItem,
   }
 })
 
 // interface IStore {
-//   activeItems: IItem[]
+//   activeItems: IItemDto[]
 //   maxItems: number
 // }
 
@@ -37,7 +43,7 @@ export const useUserCartStore = defineStore('userCart', () => {
 // export const useUserCartStore = defineStore('userCart', {
 //   state: () => ({ ...defaultValue }),
 //   actions: {
-//     addActiveItem(item: IItem) {
+//     addActiveItem(item: IItemDto) {
 //       this.activeItems.push(item)
 //     },
 //   },

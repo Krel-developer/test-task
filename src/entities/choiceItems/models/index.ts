@@ -1,9 +1,10 @@
-import { getChoiceItems, type IItem } from '@/shared/api'
+import { getChoiceItems } from '@/shared/api'
+import type { IItemDto } from '@/shared/types'
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 
 export const useChoiceItemsStore = defineStore('choiceItems', () => {
-  const list = ref<IItem[]>([])
+  const list = ref<IItemDto[]>([])
   const currentItem = ref<null | number>(null)
 
   function setCurentItem(id: null | number) {
@@ -33,7 +34,7 @@ export const useChoiceItemsStore = defineStore('choiceItems', () => {
 })
 
 // interface IStore {
-//   list: IItem[]
+//   list: IItemDto[]
 //   currentItem: null | number
 // }
 

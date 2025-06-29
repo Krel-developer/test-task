@@ -15,6 +15,7 @@ choiceItemsStore.fetchList()
       v-for="item in choiceItemsStore.getList"
       :key="item.id"
       :title="item.name"
+      :is-active="item.isActive"
       @click="selectChoiceItem(item)"
     />
   </div>
