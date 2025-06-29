@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { reactive } from 'vue'
-import UserItems from './components/UserItems.vue'
-import UserCart from './components/UserCart.vue'
-import type { IItem, IUserData } from './types'
+import { reactive, ref } from 'vue'
+import ChoiceCart from './components/ChoiceCart.vue'
 import ChoiceItems from './components/ChoiceItems.vue'
+import UserCart from './components/UserCart.vue'
+import UserItems from './components/UserItems.vue'
+import type { IItem, IUserData } from './types'
 
 // Логика для списка пользователя
 const userCartData: IUserData = reactive({
@@ -21,8 +22,10 @@ function selectUserItem(item: IItem) {
 
 // логика для списка предметов для выбора
 
+const activeChoiceItem = ref<string | null>(null)
+
 function selectChoiceItem(item: IItem) {
-  console.log(item)
+  activeChoiceItem.value = item.name
 }
 </script>
 
@@ -31,7 +34,9 @@ function selectChoiceItem(item: IItem) {
     <div class="app__top__column block_border">
       <UserCart :user-data="userCartData" />
     </div>
-    <div class="app__top__column block_border">ChoiseCart</div>
+    <div class="app__top__column block_border">
+      <ChoiceCart :active-item="activeChoiceItem" />
+    </div>
   </div>
   <div class="app__bottom">
     <div class="app__bottom__column block_border">
