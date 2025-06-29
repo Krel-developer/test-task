@@ -15,7 +15,16 @@ export const useChoiceItemsStore = defineStore('choiceItems', () => {
     list.value = getChoiceItems()
   }
 
+  function switchItemActivity(id: number) {
+    list.value.forEach((el, index) => {
+      if (el.id === id) {
+        list.value[index].isActive = !list.value[index].isActive
+      }
+    })
+  }
+
   const getList = computed(() => list.value)
+  const getCurrentItem = computed(() => currentItem.value)
   const getCurentITemName = computed(() => {
     let currentItemName: string = ''
     const currentItemId = currentItem.value
@@ -30,7 +39,14 @@ export const useChoiceItemsStore = defineStore('choiceItems', () => {
     return currentItemName ? currentItemName : 'Предмет не выбран'
   })
 
-  return { getCurentITemName, getList, fetchList, setCurentItem }
+  return {
+    getCurentITemName,
+    getList,
+    getCurrentItem,
+    fetchList,
+    setCurentItem,
+    switchItemActivity,
+  }
 })
 
 // interface IStore {
