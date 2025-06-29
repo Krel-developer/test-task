@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { IItem, IUserData } from '../types'
+import type { IUserData } from '../types'
 import Card from './Card.vue'
 
 interface IProps {

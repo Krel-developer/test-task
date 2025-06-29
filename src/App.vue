@@ -3,7 +3,9 @@ import { reactive } from 'vue'
 import UserItems from './components/UserItems.vue'
 import UserCart from './components/UserCart.vue'
 import type { IItem, IUserData } from './types'
+import ChoiceItems from './components/ChoiceItems.vue'
 
+// Логика для списка пользователя
 const userCartData: IUserData = reactive({
   list: [],
   maxActiveItems: 6,
@@ -15,6 +17,12 @@ function selectUserItem(item: IItem) {
     userCartData.list.push(item)
     userCartData.actvieItemsCount = userCartData.list.length
   }
+}
+
+// логика для списка предметов для выбора
+
+function selectChoiceItem(item: IItem) {
+  console.log(item)
 }
 </script>
 
@@ -29,7 +37,9 @@ function selectUserItem(item: IItem) {
     <div class="app__bottom__column block_border">
       <UserItems @select-user-item="selectUserItem" />
     </div>
-    <div class="app__bottom__column block_border">ChoiseItems</div>
+    <div class="app__bottom__column block_border">
+      <ChoiceItems @select-choice-item="selectChoiceItem" />
+    </div>
   </div>
 </template>
 
